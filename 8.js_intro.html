@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js_intro</title>
+    <script>
+        function variableConsole1() {
+            var x = 10;
+            var y = "10";
+            console.log(x+y);
+        }
+        function variableConsole2() {
+            // 변수 타입이 달라도 배열 하나에 입력 가능
+            // var arr = [10, "20", 30, "40"];
+            var arr2 = [10, 20, 30, 40];
+            var total = 0;
+
+            arr2.push(50);
+            arr2.forEach((a)=>console.log(a));
+            
+            for(i=0; i<arr2.length; i++) {
+                total += arr2[i];
+            }
+            
+            // 콘솔로 출력
+            console.log("total : " + total);
+            // 팝업으로 출력 - 확인버튼 누르기 전까지 이후 코드 진행 X
+            alert("total : " + total);
+            // html문서에 출력 - 실무에서 사용 x
+            document.write("total : " + total);
+        }
+        function variableConsole3() {
+            // 함수를 배열에 넣어서 사용 가능
+            var arr = [10, 20, ()=>{console.log("hello World!");}];
+            // 함수 호출 : ()
+            arr[2]();
+        }
+
+        // 컴파일 언어로 에러는 런타임단에서만 발견 가능
+        function varExample() {
+            // var는 같은 변수명에 재선언과 재할당 가능
+            var x = 10;
+            var x = 20;
+            console.log("varExample : " + x);
+        }
+        function letExample() {
+            // let은 같은 변수명에 재할당만 가능
+            let x = 10;
+            x = 20;
+            console.log("letExample : " + x);
+        }
+        function constExample() {
+            // const는 재선언과 재할당 불가능 - java의 final(상수)
+            const x = 10;
+            x = 20;
+            console.log("constExample : " + x);
+            // 런타임에러 - console에서 확인 가능
+        }
+        // 
+        function changeTextById() {
+            document.getElementById("change1").innerHTML="변경완료";
+            document.getElementById("change1").style.fontSize="30px";
+        }
+        function changeTextByClass() {
+            // getElementsByClassName은 컬렉션 객체를 반환 - 요소를 빼내서 사용해야 함
+            var arr = document.getElementsByClassName("class1");
+            for(i=0; i<a.length; i++) {
+                arr[i].innerHTML="변경완료";
+                arr[i].style.fontSize="30px";
+                arr[i].style.color="red";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>javascript 변수와 출력</h2>
+    <button onclick="variableConsole1()">console에 변수 출력하기 1</button>
+    <button onclick="variableConsole2()">console에 변수 출력하기 2</button>
+    <button onclick="variableConsole3()">console에 변수 출력하기 3</button>
+
+    <h2>javascript 변수 선언 키워드</h2>
+    <button onclick="varExample()">var 예제</button>
+    <button onclick="letExample()">let 예제</button>
+    <button onclick="constExample()">const 예제</button>
+
+    <h2>tag선택, class선택, id선택</h2>
+    <button onclick="changeTextById()">id선택 후 change</button>
+    <!-- 버튼 클릭 시 변경완료로 바뀌도록 -->
+    <p id="change1">변경대상 id</p>
+    <button onclick="changeTextByClass()">class선택 후 change</button>
+    <!-- 버튼 클릭 시 변경완료, fontsize, fontcolor 변경 -->
+    <p class="class1">변경대상 class</p>
+    <p class="class1">변경대상 class</p>
+    <button onclick="changeTextByTag()">tag선택 후 change</button>
+</body>
+</html>
