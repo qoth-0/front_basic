@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 콜백지옥 해결책 -->
+    <title>async await</title>
+    <!-- ajax -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <!-- axios - 현대적 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+</head>
+<body>
+    <script>
+        async function callBackImp() { 
+            try { // ajax
+                const response1 = await $.ajax({
+                    url: 'https://jsonplaceholder.typicode.com/posts/1',
+                    type: 'GET',
+                    dataType: 'json'});
+                console.log("ajax");
+                console.log(response1);
+            }catch(e) {
+                console.log(e);
+            }
+            // const response2 = await $.ajax({
+            //     url: 'https://naver.com',
+            //             method: 'POST', 
+            //             dataType: 'json', 
+            //             data: response1});
+            // console.log(response2);
+            // const response3 = await $.ajax({
+            //     url: 'https://google.com',
+            //             method: 'POST', 
+            //             dataType: 'json', 
+            //             data: response2});
+            // console.log(response3);
+            try { // axios
+                const response1 = await axios.get('https://jsonplaceholder.typicode.com/posts/1'); // 해당 url로 get요청
+                console.log("axios");
+                console.log(response1.data.body); // data - body 접근
+            }catch(e) {
+                console.log(e);
+            }
+        }
+        callBackImp();
+    </script>
+</body>
+</html>

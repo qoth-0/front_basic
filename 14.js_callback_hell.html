@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>callback지옥</title>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+        // 외붙통신요청은 비동기 but, 콜백함수로 순서 보장 : GET -> POST
+        // 가독성 나쁨
+        $(document).ready(()=>{ 
+                 $.ajax({
+                url: 'https://jsonplaceholder.typicode.com/posts/1',
+                type: 'GET', // 데이터 요청
+                dataType: 'json', 
+                success:  function(response) { 
+                    console.log(response);
+                    $.ajax({  // 콜백함수로 연결하지 않고 따로 작성됐으면 데이터 요청 전에 실행됐을 것
+                        url: 'https://naver.com',
+                        method: 'POST', // 데이터 보냄
+                        dataType: 'json', 
+                        data: response,
+                        success:  function(response2) { 
+                            console.log(response2);
+                            $.ajax({
+                                url: 'https://google.com',
+                                method: 'POST', // 데이터 보냄
+                                dataType: 'json', 
+                                data: response2,
+                                success:  function(response3) { 
+                                    console.log(response3);
+                                },
+                                error: function() { 
+
+                                }
+                            })
+                        },
+                        error: function() { 
+
+                        }
+                    })
+                },
+                error: function() { 
+
+                }
+            })
+        })
+    </script>
+</body>
+</html>

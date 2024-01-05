@@ -7,12 +7,93 @@
     <script>
         function basicFunction() {
             alert("함수 호출 완료");
+
+        }
+
+        function basicFunction4(a,b) {
+            let total = a + b;
+            alert("합계 : " + total);
+        }
+        function basicFunction5(...numbers) { // ... : 배열 형태
+            const total = numbers.reduce((a,b)=>a+b, 0); // 0은 초기값
+            alert("합계 : " + total);
         }
     </script>
 </head>
 <body>
     <h2>js 기본 함수 호출</h2>
     <button onclick="basicFunction()">함수 호출</button>
-    
+    <button onclick="basicFunction2()">함수 호출2</button>
+    <button onclick="basicFunction3('hongildong')">함수 호출3</button>
+    <button onclick="basicFunction4(10, 20)">함수 호출4</button>
+    <button onclick="basicFunction5(10, 20, 30, 40)">함수 호출5</button>
+
+    <h2>계산기 프로그램</h2>
+    <div>
+        <label>사칙연산 선택</label>
+        <select id="calculator">
+            <option value="add">덧셈</option>
+            <option value="sub">뺄셈</option>
+            <option value="mul">곱셈</option>
+            <option value="div">나눗셈</option>
+        </select>
+        <input type="text" class="number">
+        <input type="text" class="number">
+        <button onclick="calculator()">연산 실행</button>
+    </div>
+
+    <h2>이력서 입력</h2>
+    <div id="container">
+        <div class="profile">
+            <label>항목 1</label>
+            <input type="text">
+            <div id="target"></div>
+        </div>
+    </div>
+    <!-- 추가 함수 2개 -->
+    <button onclick="target()">항목 추가</button>
+    <script>
+        function calculator() {
+            const select = document.getElementById("calculator").value;
+            let values = document.getElementsByClassName("number");
+            let a = Number(values[0].value); // 형변환, value로 값 접근
+            let b = Number(values[1].value);
+            if(select === 'add') { // ===가 기본
+                alert(a+b);
+            }else if(select === 'sub') {
+                alert(a-b);
+            }else if(select === 'mul') {
+                alert(a*b);
+            }else if(select === 'div') {
+                alert(a/b);
+            }
+        }
+        // 이력서 - createElement 사용
+        let count = 1;
+        function plus() {
+            const newProfile = document.createElement("div");
+            newProfile.className = 'profile';
+
+            // 라벨을 생성하고 텍스트를 설정
+            const newLabel = document.createElement('label');
+            newLabel.textContent = '항목 ' + (++count);
+
+            // 입력란을 생성
+            const newInput = document.createElement('input');
+            newInput.type = 'text';
+
+            // 라벨과 입력란을 새로운 프로필에 추가
+            newProfile.appendChild(newLabel);
+            newProfile.appendChild(newInput);
+
+            // 프로필 컨테이너에 추가
+            document.getElementById('container').appendChild(newProfile);
+        }
+        // 이력서 - innerHTML 사용
+        function target() {
+            let target = document.getElementById('target');
+            target.innerHTML += "<label>항목 " + (++count) + "</label><input type='text'><br>";
+        }
+    </script>
 </body>
 </html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js callback</title>
+    <script>
+        // 콜백함수 없음
+        function callBackExample1() {
+            alert("hello");
+        }
+        // 콜백함수 O
+        function callBackExample2() {
+            // myCallback1을 사용
+            processUserInput(myCallback1); 
+        }
+        function callBackExample3() {
+            // myCallback2 사용안하고 바로 구현
+            processUserInput((name) => alert("안녕하세요 " + name + "님")); 
+        }
+        function myCallback1(name) {
+            // 입력받은 이름 콘솔 출력
+            console.log("안녕하세요 " + name + "님");
+        }
+        function myCallback2(name) {
+            // 입력받은 이름 팝업 출력
+            alert("안녕하세요 " + name + "님"); 
+        }
+        function processUserInput(callback) {
+            let name = prompt("이름을 입력해주세요"); // prompt : 사용자 입력 받음
+            callback(name);
+        }
+
+        function callBackExample4() {
+            const numbers = [1, 2, 3, 4, 5];
+            numbers.forEach((a) => console.log(a)); 
+        }
+        function callBackExample5() {
+            // setTimeOut함수는 대표적인 js의 비동기함수(콜백함수 처리 함수)
+            // 그외에 네트워크 작업을 수행하는 많은 함수가 비동기 함수로 설계
+            setTimeout(()=>console.log("hello world1"), 2000); // setTimeout : 2000밀리초 기다리고 함수 실행
+            console.log("hello world2");
+            setTimeout(()=>console.log("hello world3"), 2000); 
+            console.log("hello world4");
+            // hello world2 -> hello world4 -> hello world1 -> hello world3
+        }
+        
+    </script>
+</head>
+<body>
+    <!-- 콜백함수 : 매개변수로 함수를 받아 실행되는 함수 -->
+    <h2>콜백함수</h2>
+    <button onclick="callBackExample1()">일반함수 예제1</button>
+    <button onclick="callBackExample2()">콜백함수 예제2</button>
+    <button onclick="callBackExample3()">콜백함수 예제3</button>
+    <button onclick="callBackExample4()">콜백함수 예제4</button>
+    <button onclick="callBackExample5()">콜백함수 예제5</button>
+</body>
+</html>
