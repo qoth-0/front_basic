@@ -45,7 +45,7 @@
         // 리스트형 데이터
         async function callBackImp2() {
             try { // axios
-                const response1 = await axios.get('https://jsonplaceholder.typicode.com/posts'); // 해당 url로 get요청
+                const response1 = await axios.get('https://jsonplaceholder.typicode.com/posts/'); // 해당 url로 get요청
                 let target = document.getElementsByClassName('table')[0];
                 response1.data.forEach(element => {
                     target.innerHTML += "<tr><td>" + element.id + "</td><td>" + element.title + "</td><td>" + element.userId + "</td></tr><br>";
