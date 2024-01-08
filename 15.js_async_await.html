@@ -17,7 +17,7 @@
                 const response1 = await $.ajax({
                     url: 'https://jsonplaceholder.typicode.com/posts/1',
                     type: 'GET',
-                    dataType: 'json'});
+                    dataType: 'json'}); // ajax의 데이터타입을 지정해주지 않으면 기본적으로 xml 형식
                 console.log("ajax");
                 console.log(response1);
             }catch(e) {

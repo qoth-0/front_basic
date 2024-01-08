@@ -6,18 +6,18 @@
     <title>callback지옥</title>
 </head>
 <body>
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script> 
     <script>
         // 외붙통신요청은 비동기 but, 콜백함수로 순서 보장 : GET -> POST
         // 가독성 나쁨
         $(document).ready(()=>{ 
-                 $.ajax({
+                 $.ajax({ 
                 url: 'https://jsonplaceholder.typicode.com/posts/1',
                 type: 'GET', // 데이터 요청
                 dataType: 'json', 
                 success:  function(response) { 
                     console.log(response);
-                    $.ajax({  // 콜백함수로 연결하지 않고 따로 작성됐으면 데이터 요청 전에 실행됐을 것
+                    $.ajax({  // 콜백함수로 연결하지 않고 따로 작성됐으면 데이터 요청 전에 실행됐을 것 - 순차실행을위해 콜백함수 사용
                         url: 'https://naver.com',
                         method: 'POST', // 데이터 보냄
                         dataType: 'json', 
